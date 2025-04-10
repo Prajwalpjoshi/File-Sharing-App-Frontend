@@ -6,9 +6,9 @@ import {
   InputGroup,
   InputRightElement,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -55,7 +55,7 @@ const Signup = () => {
         headers: { "Content-type": "application/json" },
       };
       const { data } = await axios.post(
-        "/api/user",
+        `${process.env.REACT_APP_API_URL}/api/user`,
         { name, email, password, pic },
         config
       );
@@ -121,37 +121,28 @@ const Signup = () => {
   return (
     <VStack spacing="5px">
       <FormControl id="name" isRequired>
-        <FormLabel htmlFor="name">Name</FormLabel>
+        <FormLabel>Name</FormLabel>
         <Input
-          id="name"
-          name="name"
           placeholder="Enter Your Name"
-          autoComplete="name"
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
 
       <FormControl id="email" isRequired>
-        <FormLabel htmlFor="email">Email Address</FormLabel>
+        <FormLabel>Email Address</FormLabel>
         <Input
-          id="email"
-          name="email"
           type="email"
           placeholder="Enter Your Email"
-          autoComplete="email"
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
 
       <FormControl id="password" isRequired>
-        <FormLabel htmlFor="password">Password</FormLabel>
+        <FormLabel>Password</FormLabel>
         <InputGroup size="md">
           <Input
-            id="password"
-            name="password"
             type={show ? "text" : "password"}
             placeholder="Enter Password"
-            autoComplete="new-password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -163,14 +154,11 @@ const Signup = () => {
       </FormControl>
 
       <FormControl id="confirmPassword" isRequired>
-        <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+        <FormLabel>Confirm Password</FormLabel>
         <InputGroup size="md">
           <Input
-            id="confirmPassword"
-            name="confirmPassword"
             type={show ? "text" : "password"}
             placeholder="Confirm Password"
-            autoComplete="new-password"
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -182,10 +170,8 @@ const Signup = () => {
       </FormControl>
 
       <FormControl id="pic">
-        <FormLabel htmlFor="pic">Upload Your Picture</FormLabel>
+        <FormLabel>Upload Your Picture</FormLabel>
         <Input
-          id="pic"
-          name="pic"
           type="file"
           p={1.5}
           accept="image/*"
@@ -196,7 +182,7 @@ const Signup = () => {
       <Button
         colorScheme="blue"
         width="100%"
-        style={{ marginTop: 15 }}
+        mt={3}
         onClick={submitHandler}
         isLoading={picLoading}
       >

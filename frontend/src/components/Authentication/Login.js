@@ -45,8 +45,9 @@ const Login = () => {
         },
       };
 
+      // ✅ Use your backend API URL from .env
       const { data } = await axios.post(
-        "/api/user/login",
+        `${process.env.REACT_APP_API_URL}/api/user/login`,
         { email, password },
         config
       );
