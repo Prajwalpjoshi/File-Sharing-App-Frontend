@@ -25,7 +25,7 @@ const Signup = () => {
   const [pic, setPic] = useState("");
   const [picLoading, setPicLoading] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   const submitHandler = async () => {
     setPicLoading(true);
@@ -57,7 +57,7 @@ const Signup = () => {
         headers: { "Content-type": "application/json" },
       };
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user`,
+        `${backendURL}/api/user`,
         { name, email, password, pic },
         config
       );
