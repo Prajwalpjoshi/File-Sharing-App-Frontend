@@ -12,6 +12,8 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Login = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -22,6 +24,8 @@ const Login = () => {
 
   const toast = useToast();
   const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const submitHandler = async () => {
     setLoading(true);
@@ -45,9 +49,8 @@ const Login = () => {
         },
       };
 
-      // ✅ Use your backend API URL from .env
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/login`,
+        `${API_URL}/api/user/login`,
         { email, password },
         config
       );

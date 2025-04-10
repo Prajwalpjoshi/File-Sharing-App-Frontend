@@ -25,6 +25,8 @@ const Signup = () => {
   const [pic, setPic] = useState("");
   const [picLoading, setPicLoading] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const submitHandler = async () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
