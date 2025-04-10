@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/files" element={<Filepage />} />
         <Route path="/download/:id" element={<DownloadPage />} />
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </div>
   );
